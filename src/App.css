@@ -302,9 +302,7 @@ a:hover{
     display: flex !important;
     justify-content: space-between !important;
 }
-.news-title{
-width: 70%;
-}
+
 
 .news-image-container .img{
     width:100px;
@@ -381,3 +379,10 @@ width: 70%;
     padding: 20px;
     align-items: center;
 }
+
+.socialMediaImage{
+    width: 100%;
+    max-height: 100px;
+    object-fit: none;
+    border-radius: 10%;
+  }
