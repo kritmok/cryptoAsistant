@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { Layout, Typography, Space } from "antd";
+import { Routes, Route } from "react-router-dom";
+import { Layout, Typography } from "antd";
 import {
   Navbar,
   Exchanges,
@@ -31,14 +31,8 @@ const App = () => {
         </Layout>
       <div className="footer">
         <Typography.Title level={5} style={{ color: 'white', textAlign: 'center'}}>
-          Cryptoverse <br />
-          All rights reserved
+          All rights reserved © 2022
         </Typography.Title>
-        <Space>
-          <Link to="/">Home</Link>
-          <Link to="/exchanges">Exchanges</Link>
-          <Link to="/news">News</Link>
-        </Space>
       </div>
       </div>
     </div>
