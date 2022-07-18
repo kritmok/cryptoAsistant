@@ -18,20 +18,25 @@ function News({simplified}) {
   const demoImage = 'https://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg'
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} >
       {!simplified && (
-        <Col span={24}>
+        <>
+        <Col span={8}></Col>
+        <Col span={8}>
           <Select
             showSearch
             className="select-news"
             placeholder="Select a Crypto"
             optionFilterProp="children"
             onChange={(value) => setNewsCategory(value)}
-            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            size="large">
             <Option value="Cryptocurrency">Cryptocurrency</Option>
             {data?.data?.coins.map((coin) => <Option value={coin.name}>{coin.name}</Option>)}
           </Select>
         </Col>
+        <Col span={8}></Col>
+        </>
       )}
 
       {cryptoNews?.value?.map((news, i) => (
