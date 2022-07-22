@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Input } from 'antd';
+import { Card, Row, Col, Input, Button } from 'antd';
 import Loader from "./Loader"
+import { toast } from 'react-toastify';
 
 import { useGetCryptosQuery } from '../services/CrpytoApi';
 
@@ -13,6 +14,7 @@ const Cryptocurrencies = ({simplified}) => {
   const [cryptos, setCryptos ] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
+
   useEffect(() => {
     const filteredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -21,6 +23,30 @@ const Cryptocurrencies = ({simplified}) => {
   }, [cryptosList, searchTerm])
 
   if(isFetching) return <Loader />;
+
+
+  const addtowatchlist = async(e, name) => {
+    try{
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("token", localStorage.token);
+      const coin_name = name;
+      const body = { coin_name } ;
+      const response = await fetch("http://localhost:5000/watchlist/add", {
+          method: "POST",
+          headers: myHeaders,
+          body: JSON.stringify(body)
+      })
+
+      toast.success("Sucessfully added " + name + " to your watchlist!");
+
+  } catch (err) {
+      console.log(err.message);
+  }
+
+    
+    
+  }
 
   return (
     <>
@@ -41,7 +67,7 @@ const Cryptocurrencies = ({simplified}) => {
                 <p>Price: {millify(currency.price)}</p>
                 <p>Market Cap: {millify(currency.marketCap)}</p>
                 <p>Daily Change: {millify(currency.change)}%</p>
-                
+                <Button onClick={(e) => addtowatchlist(e, currency.name) }>Add to WatchList</Button>
               </Card>
             </Link>
           </Col>

@@ -386,3 +386,18 @@ a:hover{
     object-fit: none;
     border-radius: 10%;
   }
+
+
+.login{
+    min-height: 95vh;
+    padding-top: 100px;
+}
+
+.watchlist{
+    min-height: 95vh;
+}
+
+.logout{
+    min-height: 95vh;
+    text-align: center;
+}
